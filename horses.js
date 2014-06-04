@@ -3,15 +3,19 @@
 var Horses = function (outerHorsesElements, options) {
     options = (typeof options === "undefined") ? {} : options;
     this.options = options;
+    if (typeof this.options.innerHorse == 'undefined') {
+        this.options.innerHorse = '.horserider'
+    }
     this.innerhorses = $(outerHorsesElements).getElements('horserider').getElements('.horse');
-    this.numberOfHorses = $(outerHorsesElements).getElement('.horserider').getElements('.horse').length;
-    this.horseWidth = $(outerHorsesElements).getElement('.horserider').getElement('.horse').getStyle('width').replace('px', '');
-    this.horseHeight = $(outerHorsesElements).getElement('.horserider').getElement('.horse').getStyle('height').replace('px', '');
+    this.numberOfHorses = $(outerHorsesElements).getElement(this.options.innerHorse).getElements('.horse').length;
+    this.horseWidth = $(outerHorsesElements).getElement(this.options.innerHorse).getElement('.horse').getStyle('width').replace('px', '');
+    this.horseHeight = $(outerHorsesElements).getElement(this.options.innerHorse).getElement('.horse').getStyle('height').replace('px', '');
     this.pPosition = 1
     if (typeof this.options.vertical == 'undefined') {
         this.options.vertical == false;
     }
 
+    $(outerHorsesElements).setStyle('overflow', 'hidden');
 
     if (typeof options.paneWidth != undefined) {
         $(outerHorsesElements).setStyle('width', (options.paneWidth * this.horseWidth) + 'px');
@@ -24,23 +28,23 @@ var Horses = function (outerHorsesElements, options) {
         if (this.options.vertical == true) {
             $(outerHorsesElements).setStyle('width', this.horseWidth + 'px');
             $(outerHorsesElements).setStyle('height', (options.paneWidth * this.horseHeight) + 'px');
-            $(outerHorsesElements).getElement('.horserider').setStyle('height', this.numberOfHorses * 100 + '%');
-            $(outerHorsesElements).getElement('.horserider').setStyle('width', '100%');
+            $(outerHorsesElements).getElement(this.options.innerHorse).setStyle('height', this.numberOfHorses * 100 + '%');
+            $(outerHorsesElements).getElement(this.options.innerHorse).setStyle('width', '100%');
         } else {
-            $(outerHorsesElements).getElement('.horserider').setStyle('width', this.numberOfHorses * 100 + '%');
-            $(outerHorsesElements).getElement('.horserider').setStyle('height', '100%');
+            $(outerHorsesElements).getElement(this.options.innerHorse).setStyle('width', this.numberOfHorses * 100 + '%');
+            $(outerHorsesElements).getElement(this.options.innerHorse).setStyle('height', '100%');
         }
     }
     this.updateDims();
     this.jumpTo = function (position) {
-        //$(outerHorsesElements).getElement('.horserider').setStyle('display', 'none');
+        //$(outerHorsesElements).getElement(this.options.innerHorse).setStyle('display', 'none');
 
         var hPos = this.horseWidth - (position * this.horseWidth);
         var hPosV = this.horseHeight - (position * this.horseHeight);
         if (this.options.vertical == true) {
-            $(outerHorsesElements).getElement('.horserider').setStyle('top', hPosV + 'px');
+            $(outerHorsesElements).getElement(this.options.innerHorse).setStyle('top', hPosV + 'px');
         } else {
-            $(outerHorsesElements).getElement('.horserider').setStyle('left', hPos + 'px');
+            $(outerHorsesElements).getElement(this.options.innerHorse).setStyle('left', hPos + 'px');
         }
         this.pPosition = position;
     };
@@ -66,7 +70,7 @@ var Horses = function (outerHorsesElements, options) {
     }
 
     this.inject = function (elToInject) {
-        elToInject.inject($(outerHorsesElements).getElement('.horserider'));
+        elToInject.inject($(outerHorsesElements).getElement(this.options.innerHorse));
         this.numberOfHorses++;
         this.updateDims();
     }
