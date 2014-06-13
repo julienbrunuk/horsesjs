@@ -1,0 +1,101 @@
+// requires opendaws + lesshat
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1{
+	color: rgb(63, 169, 245);
+	font-weight: bold;
+}
+
+#window{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	vertical-align: center;
+
+}
+
+#bigredbox{
+	background-color: red;
+	position: relative;
+	margin: auto;
+	height: 200px;
+	margin-top: 15%;
+	color: #fff;
+	text-align: center;
+	padding: 1em;
+	font-size: 3em;
+
+}
+
+body{
+}
+
+#horsesdemo, #horsesdemo2{
+	display: inline-block;
+	width: 0px;
+	height: 160px;
+	position: relative;
+}
+.horserider, .wildhorserider{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+
+	.transition(all 0.45s ease);
+}
+
+.horse{
+	display: block;
+	float: left;
+	position: relative;
+	background-color: rgb(63, 169, 245);;
+	width: 210px;
+	height: 120px;
+	padding: 0.2em;
+	color: #fff;
+	font-size: 3em;
+	text-align: center;
+	line-height: 90px;
+
+	.transition(all 1.3s ease);
+	border: 10px solid #fff;
+	p{
+		font-size: 12px;
+	}
+}
+
+.darkerhorse{
+	background-color: #0688E4;
+}
+
+.lighterhorse{
+	background-color: #95D0F9;
+}
+
+#slider1, #slider2{
+	width: 100%;
+	text-align: center;
+	span{
+		display: inline;
+		height: 130px;
+		width: 160px;
+		font-size: 3em;
+		color: #fff;
+		background-color: #686868;
+		border: 5px solid #fff;
+		padding: 0.15em;
+		position: relative;
+		top: -60px;
+		margin: 0 20px;
+		cursor: pointer;
+		font-family: monospace;
+		.border-radius(120px);
+	}
+}
